@@ -12,14 +12,11 @@ with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
 @pytest.fixture
 def app():
     db_fd, db_path = tempfile.mkstemp()
-    print('db_fd', db_fd, 'db_path', db_path)
 
     app = create_app({
         'TESTING': True,
         'DATABASE': db_path,
     })
-
-    print('app start.')
 
     with app.app_context():
         init_db()
@@ -30,12 +27,9 @@ def app():
     os.close(db_fd)
     os.unlink(db_path)
 
-    print('app ended.')
-
 
 @pytest.fixture
 def client(app):
-    print('client fixture.')
     return app.test_client()
 
 
