@@ -85,7 +85,8 @@ def login_required(view):
     def wrapped_view(**kwargs):
         print(view)
         if g.user is None:
-            return redirect(url_for('auth.login'))
+            # print('from url:', request.url)
+            return redirect(url_for('auth.login', next=request.url))
 
         return view(**kwargs)
     
