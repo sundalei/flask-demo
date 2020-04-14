@@ -40,7 +40,6 @@ def create():
             )
             db.commit()
             return redirect(url_for('blog.index'))
-            # return redirect(url_for('index'))
     return render_template('blog/create.html')
 
 
